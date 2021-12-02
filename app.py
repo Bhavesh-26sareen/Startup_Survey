@@ -318,7 +318,7 @@ for i in range(len(values2)):
 the_dict = {'dates': key2, 'y_vals': values2}
 bar_graph2 = px.bar(the_dict, x='dates', y='y_vals',
                     orientation="v",
-                    width=1500,
+                    width=1100,
                     height=500,
                     template="plotly_dark")
 
