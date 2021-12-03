@@ -56,6 +56,15 @@ dataf1['AmountInUSD'] = dataf1['AmountInUSD'].apply(amount_generator)
 # st.markdown(new_title, unsafe_allow_html=True)
 st.title(":chart_with_upwards_trend: Indian Startup Funding Dashboard")
 st.markdown("##")
+
+total_amt = (dataf1['AmountInUSD'].sum())
+total_amt = (total_amt.astype(float)/1000000000).round(2).astype(str) + 'B'
+lcol, midcol, rightcol = st.columns(3)
+with lcol:
+    st.subheader("Total Amount Funded:")
+    st.subheader(f"US$ {total_amt}")
+
+st.markdown("##")
 agree = st.checkbox('See Dataset')
 if agree:
     st.dataframe(dataf)
@@ -187,7 +196,7 @@ dataf2.dropna(subset=['InvestorsName'], inplace=True)
 def make_dictionary(arr):
     dictionary = {}
     for i in arr:
-        print(i)
+        # print(i)
         # '''We do not need to take the Undisclosed Investors and also the investors with blank name'''
         if i == 'Undisclosed Investors' or i == 'Undisclosed investors' or i == '':
             continue
@@ -223,11 +232,17 @@ df_select = dataf2.query(
     "InvestmentType == @invest_type"
 )
 # print(investor_selector[0])
+
 # Getting the Dictionary
 dictionary = make_dictionary(df_select['InvestorsName'])
 
 key1 = list(dictionary.keys())
 values1 = list(dictionary.values())
+
+invl = len(key1)
+with midcol:
+    st.subheader("Total No. of Investors:")
+    st.subheader(f"{invl}")
 
 
 key1 = np.array(key1)
@@ -293,6 +308,10 @@ dataf3['AmountInUSD'] = dataf3['AmountInUSD'].apply(amount_generator)
 st1 = list(dataf3.StartupName)
 amt = list(dataf3.AmountInUSD)
 d = {}
+slen = len(st1)
+with rightcol:
+    st.subheader("Total Startups incorporated:")
+    st.subheader(f"{slen}")
 
 for i in range(len(st1)):
     d[st1[i]] = d.get(st1[i], 0)+amt[i]
@@ -309,8 +328,8 @@ ind = ind[:40]
 key2 = key2[ind]
 values2 = values2[ind]
 
-print(key2)
-print(values2)
+# print(key2)
+# print(values2)
 
 for i in range(len(values2)):
     d[key2[i]] = values2[i]
