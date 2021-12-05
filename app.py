@@ -6,16 +6,16 @@ from pandas._config.config import options
 import plotly.express as px
 import streamlit as st
 import numpy as np
-import requests
-import json
-from streamlit_lottie import st_lottie
+# import requests
+# import json
+# from streamlit_lottie import st_lottie
 
 
-def load_lottieurl(url: str):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
+# def load_lottieurl(url: str):
+#     r = requests.get(url)
+#     if r.status_code != 200:
+#         return None
+#     return r.json()
 
 
 # setting the page title
@@ -71,19 +71,19 @@ dataf1['AmountInUSD'] = dataf1['AmountInUSD'].apply(amount_generator)
 st.title(":chart_with_upwards_trend: Indian Startups Funding Dashboard")
 st.markdown("##")
 
-left_column, middle_column, right_column = st.columns(3)
-with left_column:
-    dashboard1 = load_lottieurl(
-        "https://assets2.lottiefiles.com/packages/lf20_j1eGBs.json")
-    st_lottie(dashboard1, key="Dashboard1", height=400)
-with middle_column:
-    dashboard2 = load_lottieurl(
-        "https://assets8.lottiefiles.com/private_files/lf30_8bshzuo3.json")
-    st_lottie(dashboard2, key="Dashboard2", height=400)
-with right_column:
-    dashboard3 = load_lottieurl(
-        "https://assets5.lottiefiles.com/packages/lf20_fclga8fl.json")
-    st_lottie(dashboard3, key="Dashboard3", height=400)
+# left_column, middle_column, right_column = st.columns(3)
+# with left_column:
+#     dashboard1 = load_lottieurl(
+#         "https://assets2.lottiefiles.com/packages/lf20_j1eGBs.json")
+#     st_lottie(dashboard1, key="Dashboard1", height=400)
+# with middle_column:
+#     dashboard2 = load_lottieurl(
+#         "https://assets8.lottiefiles.com/private_files/lf30_8bshzuo3.json")
+#     st_lottie(dashboard2, key="Dashboard2", height=400)
+# with right_column:
+#     dashboard3 = load_lottieurl(
+#         "https://assets5.lottiefiles.com/packages/lf20_fclga8fl.json")
+#     st_lottie(dashboard3, key="Dashboard3", height=400)
 # Building the subheading section
 total_amt = (dataf1['AmountInUSD'].sum())
 total_amt = (total_amt.astype(float)/1000000000).round(2).astype(str) + 'B'
